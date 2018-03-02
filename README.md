@@ -1,9 +1,3 @@
----
-output:
-  html_document:
-    df_print: paged
-  word_document: default
----
 
 # Optimizando el uso de R para análisis de datos en agronomía y ecología
 
@@ -26,9 +20,9 @@ El curso es fundamentalmente práctico. El método docente se basa en aprender h
 
 ## Lugar de celebración
 
-Instituto de Agricultura Sostenible (CSIC)
-Avenida Menéndez Pidal s/n
-Campus Alameda del Obispo
+Instituto de Agricultura Sostenible (CSIC)  
+Avenida Menéndez Pidal s/n  
+Campus Alameda del Obispo  
 14004 Córdoba (España)
 
 [Mapa y cómo llegar](http://www.ias.csic.es/como-llegar/)
