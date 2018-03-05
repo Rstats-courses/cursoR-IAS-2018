@@ -27,6 +27,9 @@ install.packages(
     "sp",
     "tidyr",
     "vegan",
-    "visreg"
-    )
+    "visreg",
+    "mvabund",
+    "bipartite",
+    "babynames",
+    "reshape2")
 )
