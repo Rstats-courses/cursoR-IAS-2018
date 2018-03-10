@@ -1,6 +1,7 @@
 install.packages(
   c("arm",
     "babynames",
+    "bipartite",
     "broom",
     "cowplot",
     "citr",
@@ -14,7 +15,9 @@ install.packages(
     "knitr",
     "lme4",
     "mapr",
+    "mapview",
     "merTools",
+    "mvabund",
     "nlme",
     "paperplanes",
     "plotly",
@@ -22,14 +25,11 @@ install.packages(
     "raster",
     "rcrossref",
     "readr",
+    "reshape2",
     "rgdal",
     "rmarkdown",
     "sp",
     "tidyr",
     "vegan",
-    "visreg",
-    "mvabund",
-    "bipartite",
-    "babynames",
-    "reshape2")
+    "visreg")
 )
