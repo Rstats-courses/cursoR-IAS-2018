@@ -1,9 +1,10 @@
 #Este script carga diversos datasets como base para ver diferentes funciones en R.
 
-#Ejercició 1: Carga el dataset "extinction" en la carpeta "data" y haz un analysis explorativo----
+#Ejercició 1: Carga el dataset "extinction" en la carpeta "data" y
+ # haz un analysis explorativo----
 
 #read data
-dat <- read.csv("data/extinction.csv", h = TRUE)
+dat <- read.csv("data_exploration/data/extinction.csv", h = TRUE)
 
 #explore data
 head(dat)
@@ -28,7 +29,7 @@ scatter.smooth(dat$extinction_risck ~ dat$body_size)
 #load 2 datasets, check them, make summary statistics of one and merge
 
 #sites data:
-sites <- read.csv("data/bumblebee_sites.csv", h=T)
+sites <- read.csv("data_exploration/data/bumblebee_sites.csv", h=T)
 str(sites)
 head(sites)
 #we need unique sites
@@ -42,7 +43,7 @@ colnames(sites2)[3] <- "landscape"
 sites2
 
 #occurrence data:
-occ <- read.csv("data/bumblebees.csv", h=T)
+occ <- read.csv("data_exploration/data/bumblebees.csv", h=T)
 head(occ)
 #fix species
 table(occ$Gen_sp)
@@ -55,8 +56,8 @@ head(occ)
 #Get plant genus! #grep y substr
 position <- regexpr(pattern = "_", occ2$Flower_species)
 occ2$plant_genus <- substr(occ2$Flower_species, 1, position-1)
-#joins, reshape, merge
 
+#joins, reshape, merge
 dat <- merge(occ2, sites2, by = "Site", all = TRUE)
 str(occ2)
 str(sites2)
@@ -109,7 +110,7 @@ dat %>% group_by(Gen_sp) %>% summarize(a = mean(Highest_temp))
 #* `summarise()` - like `aggregate`
 
 #otros ejemplos:
-install.packages("babynames")
+#install.packages("babynames")
 library(babynames)
 
 head(babynames)

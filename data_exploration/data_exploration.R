@@ -1,6 +1,7 @@
 #Este script carga diversos datasets como base para ver diferentes funciones en R.
 
-#Ejercició 1: Carga el dataset "extinction" en la carpeta "data" y haz un analysis explorativo----
+#Ejercició 1: Carga el dataset "extinction" en la carpeta "data" y
+ #haz un analysis explorativo----
 
 #read data
 
@@ -14,12 +15,14 @@
 #load 2 datasets, check them, make summary statistics of one and merge
 
 #sites data:
-sites <- read.csv("data/bumblebee_sites.csv", h=T)
+sites <- read.csv("data_exploration/data/bumblebee_sites.csv", h=T)
+#explore data
+
 #Force 1 row per site by doing mean of landscape.
 
 
 #occurrence data:
-occ <- read.csv("data/bumblebees.csv", h=T)
+occ <- read.csv("data_exploration/data/bumblebees.csv", h=T)
 
 #fix species
 
@@ -40,6 +43,7 @@ grey(c(0.1,0.3,0.4))
 
 #crea una función llamada sombras que te de n numeros sequenciales entre 0 y 1
 sombras <- function(){
+  #...
 }
 
 #calcula 50 sobras de grey: grey, sombras
@@ -70,7 +74,7 @@ library(dplyr)
 #* `summarise()` - like `aggregate`
 
 #otros ejemplos:
-install.packages("babynames")
+#install.packages("babynames")
 library(babynames)
 
 head(babynames)
@@ -96,12 +100,13 @@ source(file = "misc/function.R")
 #match: TRUE: return the number of matched numbers, FALSE return the number not matched numbres
 x <- c(1, NA, 3, 2, 4, 2)
 
-count_numbers(number = 2, vector = x, match = TRUE) 
-count_numbers(number = 5, vector = x, match = TRUE) 
-count_numbers(number = 2, vector = x, match = FALSE) 
-count_numbers(number = 5, vector = x, match = FALSE) 
+count_numbers(number = 2, vector = x, match = TRUE)
+count_numbers(number = 5, vector = x, match = TRUE)
+count_numbers(number = 2, vector = x, match = FALSE)
+count_numbers(number = 5, vector = x, match = FALSE)
 
 fixed_count_numbers <- function(){
+  #...
 }
 
 fixed_count_numbers(number = 2, vector = x, match = TRUE) #right!
