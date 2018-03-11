@@ -110,6 +110,7 @@ mbc1
 #bipartite example
 data(Safariland)
 head(Safariland)
+plotweb(Safariland)
 nullmodel(Safariland, N=2, method=1)
 nullmodel(Safariland>0, N=2, method=4)
 # analysis example:

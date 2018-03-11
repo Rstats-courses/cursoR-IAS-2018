@@ -7,8 +7,8 @@ abundance <- c(1,3,4,7,8,13)
 body_size <- c(9,6,3,3,1,1)
 #plot it and do correlation
 
-#The null model: 
-#idea: Brake all procesess except for the proces of interest and compare the 
+#The null model:
+#idea: Brake all procesess except for the proces of interest and compare the
 #observed with the expected data.
 
 #In this case we want to test if this correlation may be due to randomness.
@@ -29,9 +29,9 @@ body_size <- c(9,6,3,3,1,1)
 #We observe a pattern: How uneven are abundance distributions?
 abundance <- c(1,3,4,7,8,13)
 #calculate pielou's evenees (shannon/logarithm of number of species)
-#Shannon The proportion of species i relative to the total number of species 
-#(pi) is calculated, and then multiplied by the natural logarithm of 
-#this proportion (lnpi). The resulting product is summed across species, 
+#Shannon The proportion of species i relative to the total number of species
+#(pi) is calculated, and then multiplied by the natural logarithm of
+#this proportion (lnpi). The resulting product is summed across species,
 #and multiplied by -1:
 
 
@@ -50,9 +50,9 @@ abundance <- c(1,3,4,7,8,13)
 
 #calculate p-value
 
-#null model 2. 
+#null model 2.
 #We want to test now if body size is driving the eveness patterns.
-#we create a null model where body_size is the only responsible of the 
+#we create a null model where body_size is the only responsible of the
 #observed pattern
 abundance <- c(1,3,4,7,8,13)
 body_size <- c(9,6,5,3,2,1)
@@ -80,6 +80,7 @@ mbc1
 #bipartite example
 data(Safariland)
 head(Safariland)
+plotweb(Safariland)
 nullmodel(Safariland, N=2, method=1)
 nullmodel(Safariland>0, N=2, method=4)
 # analysis example:
@@ -87,9 +88,9 @@ obs <- unlist(networklevel(Safariland, index="weighted nestedness"))
 nulls <- nullmodel(Safariland, N=100, method=1)
 null <- unlist(sapply(nulls, networklevel, index="weighted nestedness")) #takes a while ...
 
-plot(density(null), xlim=c(min(obs, min(null)), max(obs, max(null))), 
+plot(density(null), xlim=c(min(obs, min(null)), max(obs, max(null))),
      main="comparison of observed with null model Patefield")
-abline(v=obs, col="red", lwd=2)    
+abline(v=obs, col="red", lwd=2)
 
 praw <- sum(null>obs) / length(null)
 ifelse(praw > 0.5, 1-praw, praw)    # P-value
