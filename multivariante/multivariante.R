@@ -8,15 +8,15 @@ data(iris)
 
 #prepare the data
 #extract quantitative variables
-ir <- 
-ir_species <- 
-  
-#explore the data  
+ir <-
+ir_species <-
 
-  
+#explore the data
+
+
 #run pca
 #princomp
-pca <- prcomp(ir) 
+pca <- prcomp(ir)
 
 #methods print, summary, plot, biplot
 
@@ -24,11 +24,11 @@ pca <- prcomp(ir)
 library(devtools)
 install_github("ggbiplot", "vqv")
 library(ggbiplot)
-g <- ggbiplot(pca, obs.scale = 1, var.scale = 1, 
-              groups = ir_species, ellipse = TRUE, 
+g <- ggbiplot(pca, obs.scale = 1, var.scale = 1,
+              groups = ir_species, ellipse = TRUE,
               circle = TRUE)
 g <- g + scale_color_discrete(name = '')
-g <- g + theme(legend.direction = 'horizontal', 
+g <- g + theme(legend.direction = 'horizontal',
                legend.position = 'top')
 print(g)
 #more tricks
@@ -36,13 +36,13 @@ predict(pca, newdata=(tail(log_ir, 2)))
 
 #NMDS and PERMANOVA----
 #The data
-Herbivores <- read.csv(file = "data/Herbivore_specialisation.csv", header = TRUE)
+Herbivores <- read.csv(file = "multivariante/data/Herbivore_specialisation.csv", header = TRUE)
 
 #simplify objects to use
-Habitat <- 
-DayNight <- 
+Habitat <-
+DayNight <-
 #select the community
-Herb_community <- 
+Herb_community <-
 
 #The basic is the distance measure you use:
 #distance selection!----
@@ -52,14 +52,14 @@ Herb_community <-
 
 #A few words:
 #binary:
-  #Jackard 
-  #Sorensen (This coefficient weights matches in species composition 
+  #Jackard
+  #Sorensen (This coefficient weights matches in species composition
               #between the two samples more heavily than mismatches)
 #quantitative
   #Euclidian: simple distance, good for e.g. distance between sites
   #bray: 0-1 The Bray-Curtis measure ignores cases in which the species
       #is absent in both community samples, and it is dominated
-      #by the abundant species so that rare species add very little to the 
+      #by the abundant species so that rare species add very little to the
       #value of the coefficient
   #morisita: 0-1 independent of sample size. Only for counts. Recomended.
   #kulczynski: Weigth more rare species.
@@ -78,24 +78,24 @@ Habitat.uni <- unique(Habitat)
 legend(x = -2.5, y = -1.5, Habitat.uni, pch=16, col = 1:5, cex = 0.8)
 
 #Same with DayNight
-plot(Herb_community.mds$points, col = DayNight, pch = 16) 
+plot(Herb_community.mds$points, col = DayNight, pch = 16)
 legend(x = -2.5, y = -1.5, c("Day","Night"), pch=16, col = 1:5, cex = 0.8)
 
 #assumptions:
 Herb_community.mds$stress
 
-#If the stress value is greater than 0.2, it is advisable to include an 
-#additional dimension, but remember that human brains are not very well 
+#If the stress value is greater than 0.2, it is advisable to include an
+#additional dimension, but remember that human brains are not very well
 #equipped to visualise objects in more than 2-dimensions.
 
-#Transformation and standardisation. Transforming data sets prior to 
-#creating a MDS plot is often desirable, not to meet assumptions of normality, 
+#Transformation and standardisation. Transforming data sets prior to
+#creating a MDS plot is often desirable, not to meet assumptions of normality,
 #but to reduce the influence of extreme values. For example,
 
 Herb_community.sq <- sqrt(Herb_community)
-Herb_community.sq.mds <- metaMDS(comm = Herb_community.sq, 
+Herb_community.sq.mds <- metaMDS(comm = Herb_community.sq,
                                  distance = "bray", trace = FALSE)
-plot(Herb_community.sq.mds$points, col = Habitat, pch = 16) 
+plot(Herb_community.sq.mds$points, col = Habitat, pch = 16)
 
 #alternative plot
 ordiplot(Herb_community.mds,type="n")
@@ -110,22 +110,22 @@ orditorp(Herb_community.mds,display="species",col="red",air=0.01)
 
 
 
-#There are a couple of problems with these kinds of analysis. 
+#There are a couple of problems with these kinds of analysis.
 #First, their statistical power is very low, except for variables
-#with high variance. This means that for variables which are less 
+#with high variance. This means that for variables which are less
 #variable, the analyses are less likely to detect a treatment effect.
-#Second, they do not account for a very important property of 
-#multivariate data, which is the mean-variance relationship. 
-#Typically, in multivariate datasets like species-abundance data 
-#sets, counts for rare species will have many zeros with little 
+#Second, they do not account for a very important property of
+#multivariate data, which is the mean-variance relationship.
+#Typically, in multivariate datasets like species-abundance data
+#sets, counts for rare species will have many zeros with little
 #variance, and the higher counts for more abundant species will
 #be more variable.
 
-#The mvabund approach improves power across a range of species 
-#with different variances and includes an assumption of a mean-variance 
-#relationship. It does this by fitting a single generalised linear 
-#model (GLM) to each response variable with a common set of predictor 
-#variables. We can then use resampling to test for significant community 
+#The mvabund approach improves power across a range of species
+#with different variances and includes an assumption of a mean-variance
+#relationship. It does this by fitting a single generalised linear
+#model (GLM) to each response variable with a common set of predictor
+#variables. We can then use resampling to test for significant community
 #level or species level responses to our predictors.
 
 #mvabund way----
@@ -148,7 +148,7 @@ anova(mod2) #slow
 #See which species differ where
 anova(mod2, p.uni="adjusted")
 #Allows for model complexity
-mod3 <- manyglm(Herb_spp ~ Herbivores$Habitat*Herbivores$DayNight, 
+mod3 <- manyglm(Herb_spp ~ Herbivores$Habitat*Herbivores$DayNight,
                 family="negative_binomial")
 anova(mod3)
 
@@ -157,4 +157,4 @@ anova(mod3)
 #http://environmentalcomputing.net/introduction-to-mvabund/
 #http://www.davidzeleny.net/anadat-r/doku.php/en:pcoa_nmds)
 #https://jonlefcheck.net/2012/10/24/nmds-tutorial-in-r/
-  
+

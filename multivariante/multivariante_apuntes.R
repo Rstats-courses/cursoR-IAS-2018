@@ -36,7 +36,7 @@ predict(pca, newdata=(tail(ir, 2)))
 
 #NMDS and PERMANOVA----
 #The data
-Herbivores <- read.csv(file = "data/Herbivore_specialisation.csv", header = TRUE)
+Herbivores <- read.csv(file = "multivariante/data/Herbivore_specialisation.csv", header = TRUE)
 head(Herbivores)
 
 #simplify objects to use
