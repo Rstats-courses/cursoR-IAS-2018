@@ -29,6 +29,7 @@ install.packages(
     "reshape2",
     "rgdal",
     "rmarkdown",
+    "rticles",
     "shiny",
     "sf",
     "sp",
